@@ -1,0 +1,13 @@
+$accentColor: var(--color-accent-base)
+  
+@mixin accent()
+  font-size: 16pt
+  letter-spacing: 0.1em
+  
+.link
+  color: gray
+  transition: font-size 200ms ease-in-out
+
+  &.active
+    @include accent()
+    color: $accentColor

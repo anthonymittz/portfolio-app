@@ -1,0 +1,36 @@
+{
+  "name": "portfolio-client",
+  "version": "0.1.0",
+  "description": "",
+  "private": false,
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "build": "next build",
+    "start": "node index.js",
+    "monitor": "next dev",
+    "prod": "next start",
+    "lint": "next lint",
+    "export": "next export -o ../portfolio-server/client/"
+  },
+  "dependencies": {
+    "axios": "^0.26.1",
+    "body-parser": "^1.19.2",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "gsap": "^3.9.1",
+    "lodash": "^4.17.21",
+    "next": "12.1.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "sass": "^1.49.9",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "eslint": "8.11.0",
+    "eslint-config-next": "12.1.0",
+    "nodemon": "^2.0.15"
+  },
+  "author": "Anthony Mittz",
+  "license": "ISC"
+}

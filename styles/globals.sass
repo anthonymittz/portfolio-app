@@ -1,0 +1,36 @@
+@import './variables'
+@import './typography'
+@import './responsive'
+
+*
+  border: none
+  box-sizing: border-box
+  margin: 0
+  padding: 0
+  
+html, body
+  margin: 0
+  padding: 0
+
+body
+  -webkit-overflow-scrolling: touch
+
+a
+  color: inherit
+  text-decoration: none
+
+  &:focus, &:active
+    outline: 1px dotted #333
+
+main
+  background-color: var(--color-foreground)
+  position: relative
+  z-index: 0
+
+  a
+    text-decoration: underline
+
+footer
+  background-color: var(--color-footer)
+  box-shadow: 0 0 2em 0 var(--color-shadow) inset
+  z-index: 10
