@@ -1,0 +1,79 @@
+$color-overlay: var(--color-overlay)
+$height: 100vh
+  
+.section
+  background-color: lightgray
+  background-image: url('../../../../public/img/ruben-garcia.jpg')
+  background-position: 60%
+  background-repeat: no-repeat
+  background-size: cover
+  height: $height
+  position: relative
+
+  &::after
+    content: ''
+    height: 100%
+    position: absolute
+    width: 100%
+    top: 0
+    left: 0
+    background-color: $color-overlay
+    z-index: 5
+
+  & > div
+    height: 100%
+    display: flex
+    align-items: flex-end
+    position: relative
+
+  .inner
+    max-width: 28pc
+    margin-bottom: 24vh
+    right: 0
+    padding: 0 1.2rem
+    z-index: 8
+
+    small
+      display: block
+      margin-bottom: 4em
+
+    h1
+      margin-bottom: 0.75em
+
+    p
+      margin-bottom: 4em
+
+    a
+      border-radius: 5px
+      display: block
+      margin: 0 auto
+      padding: 1.25em 2em
+      text-align: center
+      text-transform: uppercase
+
+      &.primary_btn
+        background-color: #f1f1f1
+        width: 60%
+        min-width: 120px
+        max-width: 200px
+
+      &.secondary_btn
+        background-color: transparent
+        bottom: 0
+        font-size: 0.7em !important
+        left: 0
+        margin: 0 0 5em 0
+        padding-bottom: 3em
+        position: absolute
+        right: 0
+        text-align: center
+        width: 100%
+
+        &::after
+          content: '⇣'
+          position: absolute
+          bottom: 0
+          font-size: 20px
+          font-weight: 300
+          width: 100%
+          left: 0

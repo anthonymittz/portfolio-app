@@ -1,0 +1,58 @@
+$headerHeight: var(--header-height)
+$backdropColor: var(--color-shadow)
+$transparentColor: var(--color-background-transparent)
+$breakpoint: 48em
+$maxWidth: 250px
+$width: 85vw
+  
+@mixin transition
+  transition: all 250ms ease-in-out
+
+.component
+  height: calc(100vh - $headerHeight)
+  position: absolute
+  right: 0
+  top: $headerHeight
+  width: 100vw
+  display: none
+
+  .backdrop
+    @include transition
+    background-color: $backdropColor
+    display: none
+    height: 100%
+    left: 0
+    position: absolute
+    top: 0
+    width: 100%
+
+  .navigation
+    @include transition
+    background-color: #ffffff
+    height: 100%
+    max-width: $maxWidth
+    opacity: 0
+    overflow-y: scroll
+    padding: 2rem 0
+    position: relative
+    transform: translateX(-$maxWidth)
+    width: $width
+    transition: background-color 250ms, filter 250ms
+    
+    a
+      display: block
+      padding: 2em 2rem
+
+  &.open
+    display: block
+    @media screen and (min-width: $breakpoint)
+      display: none
+
+    .navigation
+      opacity: 1
+      transform: translateX(0)
+
+    .backdrop
+      display: block
+
+  
