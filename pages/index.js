@@ -6,6 +6,4 @@ export default function Home() {
   </>
 }
 
-Home.getLayout = function getLayout(page) {
-  return <div id={styles.page}>{page}</div>
-}
+Home.getLayout = page => <div id={styles.page}>{page}</div>;
