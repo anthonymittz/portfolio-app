@@ -1,6 +1,7 @@
 $size: 120px
 $innerSize: 112px
-$fadeOutDelay: 2500ms
+$fadeOutDelay: 2400ms
+$fadeOutDelayBG: 3000ms
   
 .container
   align-items: center
@@ -13,23 +14,24 @@ $fadeOutDelay: 2500ms
   top: 0
   width: 100vw
   z-index: 100
-  animation: background 350ms ease-out forwards $fadeOutDelay
+  animation: fadeOut 100ms ease-out forwards $fadeOutDelayBG
   
 .ripple
   display: block
   height: $size
   position: relative
   width: $size
+  animation: fadeOut 350ms ease-out forwards $fadeOutDelay
 
   div
     position: absolute
     border: 4px solid #ccc
     opacity: 1
     border-radius: 50%
-    animation: ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite
+    animation: ripple 2s cubic-bezier(0, 0.2, 0.8, 1) infinite
 
   div:nth-child(2)
-    animation-delay: -0.5s
+    animation-delay: -1s
 
 @keyframes ripple
   0%
@@ -46,7 +48,7 @@ $fadeOutDelay: 2500ms
     height: $innerSize
     opacity: 0
 
-@keyframes background
+@keyframes fadeOut
   0%
     opacity: 1
   100%
