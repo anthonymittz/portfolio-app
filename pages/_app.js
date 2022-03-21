@@ -1,21 +1,20 @@
-import useRoutingState from '../hooks/useRoutingState'
-import Loader from '../components/loader'
 import '../styles/globals.sass'
 
+import Head from '../components/meta/Head'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import Main from '../components/main'
 import Navigation from '../components/navigation'
+import Loader from '../components/loader'
 
 export default function MyApp({ Component, pageProps }) {
-  const routing = useRoutingState();
-
   return <>
     {/* <Loader /> */}
+    <Head />
     <Header>
       <Navigation type="main" />
     </Header>
-    {routing ? <p>Loading</p> : <Main><Component {...pageProps} /></Main>}
+    <Main><Component {...pageProps} /></Main>
     <Footer>
       <Navigation type="secondary" />
     </Footer>

@@ -1,8 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // images: { domains: ['google.com'] },
   reactStrictMode: true,
-  images: {
-    domains: ['deelay.me']
+  i18n: {
+    locales: ['en', 'ru'],
+    defaultLocale: 'en'
   }
 }
 
