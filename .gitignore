@@ -19,6 +19,9 @@ server/certificates/
 # production
 build/
 
+# images
+public/img/
+
 # server
 config/
 sertificates/

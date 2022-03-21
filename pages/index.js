@@ -1,16 +1,12 @@
-import Hero from '../components/sections/home/hero/Hero'
-import About from '../components/sections/home/about/About'
-import Work from '../components/sections/home/work/Work'
-import Blog from '../components/sections/home/blog/Blog'
-import Contacts from '../components/sections/home/contacts/Contacts'
-import styles from '../styles/pages/Home.module.sass'
+import Layout from '../components/layout'
 
 export default function Home() {
-  return <div id={styles.homepage}>
-    <Hero />
-    <About />
-    <Work />
-    <Blog />
-    <Contacts />
+  return <div id="home_page">
+    <h1>Homepage</h1>
+    <a href="/">Home</a>
   </div>
+}
+
+Home.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>
 }

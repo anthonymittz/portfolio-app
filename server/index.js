@@ -15,7 +15,7 @@ class Server {
     this.port = process.env.EXPRESS_PORT;
     this.dev = process.env.NODE_ENV !== 'production';
     this.app = this.initApp(this.dev, this.host, this.port);
-    this.express = require('./app');
+    this.express = require('./server');
     this.handle = this.initHandle(this.app);
   };
 
