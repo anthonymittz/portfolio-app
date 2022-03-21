@@ -5,12 +5,11 @@
   "private": false,
   "main": "index.js",
   "scripts": {
-    "dev-server": "nodemon index.js",
-    "dev-client": "next start",
-    "dev": "next dev",
-    "build": "next build",
     "start": "node index.js",
-    "monitor": "next dev",
+    "build": "next build",
+    "client": "next client",
+    "dev-server": "nodemon index.js",
+    "dev-client": "next dev",
     "lint": "next lint",
     "export": "next export -o ../portfolio-server/client/"
   },

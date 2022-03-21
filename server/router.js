@@ -1,16 +1,42 @@
-const { Router } = require('express');
-const { parse } = require('url');
-const server = require('../');
+const API = require('./api');
+const Pages = require('./pages');
 
-const router = Router();
+class Router {
+  constructor(express, next) {
+    this.express = express;
+    this.next = next;
+  };
 
-router.get('/', async (req, res) => {
-  const parsedUrl = parse(req.url, true);
-  await server.handle(req, res, parsedUrl);
-});
+  async init() {
+    this.initAPI();
+    this.initPages();
+    this.initErrorHandler();
+  };
 
-router.get('/error', async (req, res) => {
-  return res.status(500).send("Unknown server error.");
-})
+  initAPI() {
+    new API(this.express).init();
+  };
 
-module.exports = router;
+  initPages() {
+    new Pages(this.express, this.next).init();
+  };
+
+  initErrorHandler() {
+    this.express.use((req, res, next) => {
+      console.error(`[Router].ErrorHandler/next: ${err}`);
+      const err = new Error('Not found');
+      err.status = 404
+      next(error)
+    });
+
+    this.express.use((err, req, res, next) => {
+      console.error(`[Middleware].ErrorHandler/err: ${err}`);
+      res.status(err.status || 500);
+      res.locals.error = err;
+      res.locals.errorDescription = err.message;
+      this.next.render(req, res, '/_error', {});
+    });
+  };
+};
+
+module.exports = Router;

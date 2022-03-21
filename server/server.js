@@ -1,12 +1,38 @@
 const express = require('express');
-const router = require('./router');
-const errorHandler = require('./middleware/errorHandler');
+const next = require('next');
+const path = require('path');
 
-const app = express();
+const Router = require('./router');
+const Middleware = require('./middleware');
 
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use(router);
-app.use(errorHandler);
+class Server {
+  constructor(port) {
+    this.port = port;
+    this.express = express();
+    this.next = next(this.nextOptions);
+    this.middleware = new Middleware(this.express);
+    this.router = new Router(this.express, this.next);
+  };
 
-module.exports = app;
+  nextOptions = { dev: process.env.NODE_ENV !== 'production' };
+
+  async start() {
+    await this.next.prepare();
+    await this.middleware.init();
+    await this.router.init();
+
+    this.server = this.getHttpsServer();
+    this.server.listen(this.port);
+  }
+
+  getHttpsServer() {
+    const fs = require('fs');
+    const options = {
+      key: fs.readFileSync(path.join(__dirname, 'certificates', 'key.pem'), 'utf8'),
+      cert: fs.readFileSync(path.join(__dirname, 'certificates', 'cert.pem'), 'utf8')
+    };
+    return require('https').createServer(options, this.express);
+  };
+}
+
+module.exports = Server;

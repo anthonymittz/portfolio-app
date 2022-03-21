@@ -1,4 +1,12 @@
 const dotenv = require('dotenv').config();
-const server = require('./server/index');
+const Server = require('./server/server');
 
-server.start();
+async function main() {
+  const port = process.env.PORT;
+  const mode = process.env.NODE_ENV;
+
+  await new Server(port).start();
+  console.log(`[Server] Listening on ${port} in ${mode} mode.`);
+}
+
+main();
