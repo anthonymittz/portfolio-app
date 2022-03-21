@@ -1,12 +1,11 @@
-import Layout from '../components/layout'
+import styles from '../styles/pages/Home.module.sass'
 
 export default function Home() {
-  return <div id="home_page">
+  return <>
     <h1>Homepage</h1>
-    <a href="/">Home</a>
-  </div>
+  </>
 }
 
 Home.getLayout = function getLayout(page) {
-  return <Layout>{page}</Layout>
+  return <div id={styles.page}>{page}</div>
 }
