@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "checkJs": true,
+    "jsx": "react-jsx",
+    "paths": {"$libs": ["lib"],"$libs/*": ["lib/*"]}
+  },
+  "exclude": ["node_modules","**/node_modules/*","dist"]
+}
