@@ -5,11 +5,7 @@ export default function Category({}) {
   const router = useRouter();
   const { category } = router.query;
   
-  return <>
+  return <div id={styles.page}>
     <h1>Category: { category }</h1>
-  </>
-}
-
-Category.getLayout = function getLayout(page) {
-  return <div id={styles.page}>{page}</div>
+  </div>
 }

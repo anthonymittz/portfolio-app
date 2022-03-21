@@ -5,11 +5,7 @@ export default function Article() {
   const router = useRouter();
   const { article } = router.query;
 
-  return <>
+  return <div id={styles.page}>
     <h1>Article: { article }</h1>
-  </>
-}
-
-Article.getLayout = function getLayout(page) {
-  return <div id={styles.page}>{page}</div>
+  </div>
 }
