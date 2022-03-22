@@ -11,7 +11,7 @@ export default function Comments({ comments }) {
 }
 
 function Item({ path, text }) {
-  return <li><Link href={`${path}/${text}`}>{text}</Link></li>
+  return <li style={{margin: "2rem"}}><Link href={`${path}/${text}`}>{text}</Link></li>
 }
 
 export async function getStaticProps(context) {

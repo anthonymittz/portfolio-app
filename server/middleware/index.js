@@ -1,4 +1,6 @@
-const { json, urlencoded } = require('express');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
 
 class Middleware {
   constructor(express) {
@@ -7,8 +9,9 @@ class Middleware {
   };
 
   async init() {
-    this.express.use(json());
-    this.express.use(urlencoded(this.urlEncodedOptions));
+    this.express.use(express.json());
+    this.express.use(express.urlencoded(this.urlEncodedOptions));
+    this.express.use(favicon(path.join(__dirname, '..', '..', 'public', 'favicon.ico')));
     this.initErrorHandler();
   };
 
