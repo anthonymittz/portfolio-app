@@ -11,6 +11,7 @@ class Router {
     this.initAPI();
     this.initPages();
     this.initErrorHandler();
+    this.log("Initialized");
   };
 
   initAPI() {
@@ -23,19 +24,27 @@ class Router {
 
   initErrorHandler() {
     this.express.use((req, res, next) => {
-      console.error(`[Router].ErrorHandler/next: ${err}`);
+      this.error("Handling the error: 404 Resource not found");
       const err = new Error('Not found');
-      err.status = 404
-      next(error)
+      err.status = 404;
+      next(error);
     });
 
     this.express.use((err, req, res, next) => {
-      console.error(`[Middleware].ErrorHandler/err: ${err}`);
+      this.error(`Handling the internal server error: ${err.status}, ${err.message}`);
       res.status(err.status || 500);
       res.locals.error = err;
       res.locals.errorDescription = err.message;
       this.next.render(req, res, '/_error', {});
     });
+  };
+
+  log(message) {
+    console.log( "\x1b[36m[Server.Router]\x1b[0m -", message );
+  };
+
+  error(message) {
+    console.error( "\x1b[31m[Server.Router]\x1b[0m -", message );
   };
 };
 

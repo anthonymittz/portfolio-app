@@ -28,19 +28,36 @@ class API {
       res.json({comments});
     });
 
-    this.express.get('/api/comments/:id', (req, res) => {
-      let comment = fs.readFileSync(path.join(__dirname, '..', 'public', 'comments', `${req.params.id}.json`));
-      if (comment) {
-        let text = JSON.parse(comment);
-        res.json({text});
+    this.express.get('/api/comments/:id', (req, res, next) => {
+      let filePath = path.join(__dirname, '..', 'public', 'comments', `${req.params.id}.json`);
+      let doesExists = fs.existsSync(filePath);
+      this.log("Trying to fetch file\n" + "\x1b[2m" + `${filePath}` + "\x1b[0m");
+
+      if (doesExists) {
+        this.log('[Server.API] File is located');
+        let comment = JSON.parse(fs.readFileSync(filePath));
+        this.log('[Server.API] Parsed: ', comment);
+        return res.json({comment});
+
       } else {
-        throw new Error("Comment not found");
-      }
+        let err = new Error('File is missing');
+        err.status = 404;
+        this.error(err.message);
+        throw err;
+      };
     });
 
     this.express.use('/api/*', (req, res) => {
-      res.status(404).json({ error: "[Server] Unknown URL: resource not found." })
-    })
+      res.status(404).json({ error: "[Server.API] Unknown URL: resource not found." })
+    });
+  };
+
+  log(message) {
+    console.log( "\x1b[36m[Server.API]\x1b[0m -", message );
+  };
+
+  error(message) {
+    console.error( "\x1b[31m[Server.API]\x1b[0m -", message );
   };
 };
 

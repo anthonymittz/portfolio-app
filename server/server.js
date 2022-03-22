@@ -42,7 +42,11 @@ class Server {
   }
 
   callback(type) {
-    console.log(`[${type}] Listening on ${this.port} in ${this.mode} mode.`);
+    this.log(`${type} server is listening on ${this.port} in ${this.mode} mode.`);
+  }
+
+  log(message) {
+    console.log( "\x1b[36m[Server]\x1b[0m -", message );
   }
 }
 
