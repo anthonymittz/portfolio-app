@@ -15,6 +15,7 @@ out/
 # development
 server/certificates/
 .vscode/
+jsconfig.json
 
 # production
 build/

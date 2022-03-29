@@ -37,17 +37,11 @@ class Server {
     this.callback('HTTPS');
   };
 
-  startExpressServer() {
-    this.express.listen(this.port, this.callback('Express'));
-  }
+  startExpressServer() { this.express.listen(this.port, this.callback('Express')) };
 
-  callback(type) {
-    this.log(`${type} server is listening on ${this.port} in ${this.mode} mode.`);
-  }
+  callback(type) { this.log(`[${type}] Server is listening on a port ${this.port} in a ${this.mode} mode.`) };
 
-  log(message) {
-    console.log( "\x1b[36m[Server]\x1b[0m -", message );
-  }
+  log(message) { console.log( "\x1b[36m[Server]\x1b[0m -", message ) };
 }
 
 module.exports = Server;
