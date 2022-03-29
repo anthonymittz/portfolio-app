@@ -1,8 +1,10 @@
 require('colors');
+/* Handlers */
 const Router = require('./Router');
 const Middleware = require('./Middleware');
-const initNext = require('./modules/Next');
-const initExpress = require('./modules/Express');
+/* Servers */
+const createNextRenderer = require('./modules/Next');
+const createExpressServer = require('./modules/Express');
 const createHttpsServer = require('./modules/Https');
 
 class Server {
@@ -11,21 +13,19 @@ class Server {
     this.mode = mode;
     this.dev = mode === 'development';
     this.host = this.dev ? 'localhost' : '';
-
-    this.next = initNext(this.dev, this.host, this.port);
-    this.express = initExpress();
-    this.https = createHttpsServer(this.express, this.dev);
-
+    /* instantiate handlers */
     this.router = new Router(this.express, this.next);
     this.middleware = new Middleware(this.express);
+    /* instantiate servers */
+    this.next = createNextRenderer(this.dev, this.host, this.port);
+    this.express = createExpressServer();
+    this.https = createHttpsServer(this.express, this.dev);
   }
 
   async start() {
     await this.next.prepare();
     await this.router.init();
-    Server.log('Initialized', 'Router');
     await this.middleware.init();
-    Server.log('Initialized', 'Middleware');
     this.dev ? await this.startHttpsServer() : await this.startExpressServer();
   }
 
@@ -40,7 +40,6 @@ class Server {
   }
 
   /* Loggers */
-
   callback(err, port) {
     err ? Server.error(err.message) : Server.log(`Listening on port ${port}`);
   }
