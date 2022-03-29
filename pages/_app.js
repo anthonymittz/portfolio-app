@@ -1,15 +1,12 @@
-import Layout from '../components/layout/Layout'
-import AppContext from '../context/app/Provider'
-import '../styles/globals.sass'
+import Layout from '../components/layout/Layout';
+import '../styles/globals.sass';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <AppContext>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </AppContext>
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
   );
 }
 
-export default MyApp
+export default MyApp;

@@ -1,11 +1,5 @@
-import Container from '../container/Container'
-import styles from './Footer.module.sass'
+import styles from './Footer.module.sass';
 
-export default function Footer({children}) {
-  return <footer className={styles.component}>
-    <Container>
-      [FOOTER]
-      {children}
-    </Container>  
-  </footer>
+export default function Footer() {
+  return <footer id='footer'>Footer</footer>;
 }

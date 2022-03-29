@@ -1,15 +1,15 @@
-import Head from '../meta/head/Head'
-import Header from './header/Header'
-import Content from './content/Content'
-import Footer from './footer/Footer'
+import Head from '../meta/HtmlHead';
+import Content from './content/Content';
+import Footer from './footer/Footer';
+import Header from './header/Header';
 
-export default function Layout({children}) {
-  return <>
-    <Head />
-    <Header />
-    <Content>
-      {children}
-    </Content>
-    <Footer />
-  </>
+export default function Layout({ children }) {
+  return (
+    <>
+      <Head />
+      <Header />
+      <Content>{children}</Content>
+      <Footer />
+    </>
+  );
 }
