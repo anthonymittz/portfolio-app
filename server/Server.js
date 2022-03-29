@@ -1,3 +1,5 @@
+const colors = require('colors');
+
 class Server {
   constructor(port, mode) {
     this.port = port;
@@ -6,12 +8,16 @@ class Server {
 
   async listen() {}
 
-  static log() {
-    console.log();
+  static log(message) {
+    console.log('[server]'.cyan, message);
   }
 
-  static error() {
-    console.error();
+  static error(message) {
+    console.error(
+      '[server]'.bgRed.white.bold,
+      'Error with the message:',
+      `"${message}"`
+    );
   }
 }
 
